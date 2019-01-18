@@ -1,5 +1,5 @@
 package = "external-http-auth"
-version = "1.0-1"
+version = "1.0"
 supported_platforms = {"linux", "macosx"}
 source = {
   url = "git://github.com/junyuanxu/external-http-auth",
