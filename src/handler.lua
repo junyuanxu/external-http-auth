@@ -25,7 +25,7 @@ function ExternalAuthHandler:access(conf)
     return " http auth fail error "
   end
 
-  if res.status = 200 then
+  if res.status == 200 then
     return res
   end
 end
