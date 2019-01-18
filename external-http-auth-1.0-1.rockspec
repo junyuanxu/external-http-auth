@@ -2,7 +2,7 @@ package = "external-http-auth"
 version = "1.0-1"
 supported_platforms = {"linux", "macosx"}
 source = {
-  url = "git://github.com/aunkenlabs/kong-external-auth",
+  url = "git://github.com/junyuanxu/external-http-auth",
   tag = "0.1"
 }
 description = {
