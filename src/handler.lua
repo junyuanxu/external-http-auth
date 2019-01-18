@@ -1,5 +1,5 @@
 local BasePlugin = require "kong.plugins.base_plugin"
-local responses = require "kong.responses"
+local responses = require "kong.response"
 local http = require "resty.http"
 
 local ExternalAuthHandler = BasePlugin:extend()
