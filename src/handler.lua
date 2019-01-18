@@ -1,11 +1,10 @@
 local BasePlugin = require "kong.plugins.base_plugin"
-local responses = require "kong.response"
 local http = require "resty.http"
 
 local ExternalAuthHandler = BasePlugin:extend()
 
 function ExternalAuthHandler:new()
-  ExternalAuthHandler.super.new(self, "external-auth")
+  ExternalAuthHandler.super.new(self, "external-http-auth")
 end
 
 function ExternalAuthHandler:access(conf)
