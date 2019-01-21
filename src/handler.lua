@@ -23,11 +23,14 @@ function ExternalAuthHandler:access(conf)
 
   if not res then
     return " http auth fail error "
+     kong.log.err(err)
+     return kong.response.exit(500, { message = "http auth fail error" })
   end
 
-  if res.status == 200 then
-    return res
-  end
+   if err then
+          kong.log.err(err)
+          return kong.response.exit(500, { message = "An unexpected error occurred err " })
+   end
 end
 
 ExternalAuthHandler.PRIORITY = 900
