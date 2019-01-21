@@ -24,7 +24,8 @@ function ExternalAuthHandler:access(conf)
     headers = kong.request.get_headers(),
     body = ""
   })
-
+    kong.log("res===="+res)
+    kong.log("err===="+err)
   if not res then
      kong.log.err("not res ====== ")
      kong.log.err(err)
