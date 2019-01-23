@@ -25,8 +25,6 @@ function ExternalAuthHandler:access(conf)
     body = ""
   })
 
-    kong.log.err("res.body==== ")
-    kong.log.err(res.body)
     kong.log.err("typebody==== ",type(body))
     kong.log.err("typeres.body==== ",type(res.body))
 

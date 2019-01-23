@@ -1,9 +1,9 @@
 package = "external-http-auth"
-version = "1.0-20"
+version = "1.0-21"
 supported_platforms = {"linux", "macosx"}
 source = {
   url = "git://github.com/junyuanxu/external-http-auth",
-  tag = "v20.0"
+  tag = "v21.0"
 }
 description = {
   summary = "Kong plugin to authenticate requests using http services.",
