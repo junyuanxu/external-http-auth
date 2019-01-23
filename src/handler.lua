@@ -47,7 +47,7 @@ function ExternalAuthHandler:access(conf)
           return kong.response.exit(500, { message = "An unexpected error occurred err " })
    end
 
-   if res.status = 200 then
+   if res.status == 200 then
           return kong.response.exit(500, res.body)
    end
 end
