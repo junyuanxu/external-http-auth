@@ -24,9 +24,13 @@ function ExternalAuthHandler:access(conf)
     headers = kong.request.get_headers(),
     body = ""
   })
-    kong.log.err("res.body==== ",res.body)
-    kong.log.err("res.body.code==== ",res.body.code)
-    kong.log.err("res.body.result==== ",res.body.result)
+    local body = res.body
+    local code = res.body.code
+    local result = res.body.result
+    kong.log.err("res.body==== ",body)
+    kong.log.err("res==== ",res)
+    kong.log.err("res.body.code==== ",code)
+    kong.log.err("res.body.result==== ",result)
     kong.log.err("err==== ",err)
   if not res then
      kong.log.err("not res ====== ",err)
@@ -38,9 +42,9 @@ function ExternalAuthHandler:access(conf)
           return kong.response.exit(500, { message = "An unexpected error occurred err " })
    end
 
-   if res.body.code ~= "20101" then
-          kong.log.err("res.body.code==== ",res.body.code)
-          kong.log.err("res.body.result==== ",res.body.result)
+   if code ~= "20101" then
+          kong.log.err("code==== ",code)
+          kong.log.err("result==== ",result)
           return kong.response.exit(500, { message = " token is invalid " })
    end
 end
