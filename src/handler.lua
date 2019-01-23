@@ -35,6 +35,11 @@ function ExternalAuthHandler:access(conf)
           kong.log.err("err ====== ",err)
           return kong.response.exit(500, { message = "An unexpected error occurred err " })
    end
+
+   if res.code ~= "20101" then
+          kong.log.err("res ====== ",res)
+          return kong.response.exit(500, { message = " token is invalid " })
+   end
 end
 
 ExternalAuthHandler.PRIORITY = 900
