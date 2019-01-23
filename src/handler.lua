@@ -1,5 +1,8 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local http = require "resty.http"
+local http = require "socket.http"
+local ltn12 = require "ltn12"
+local cjson = require "cjson.safe"
 
 local ExternalAuthHandler = BasePlugin:extend()
 
@@ -26,6 +29,23 @@ function ExternalAuthHandler:access(conf)
   })
 
 
+    local response_body = {}
+    local res, code, response_headers = http.request{
+      url = conf.url,
+      method = "POST",
+      headers = kong.request.get_headers(),
+      sink = ltn12.sink.table(response_body),
+    }
+    if type(response_body) ~= "table" then
+        return nil, "Unexpected response"
+    end
+      local resp = table.concat(response_body)
+      kong.log.err("response body: ", resp)
+
+    if code ~= 200 then
+        return nil, resp
+    end
+
   if not res then
      kong.log.err("not res ====== ",err)
      return kong.response.exit(500, { message = "http auth fail error" })
@@ -36,9 +56,6 @@ function ExternalAuthHandler:access(conf)
           return kong.response.exit(500, { message = "An unexpected error occurred err " })
    end
 
-   if res.status == 200 then
-          return kong.response.exit(500, res)
-   end
 end
 
 ExternalAuthHandler.PRIORITY = 900
