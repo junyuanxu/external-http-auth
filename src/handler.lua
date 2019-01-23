@@ -25,17 +25,10 @@ function ExternalAuthHandler:access(conf)
     body = ""
   })
     local body = res.body
-    kong.log.err("res.body==== ",body)
+    kong.log.err("res.body==== ")
+    kong.log.err(res.body)
     kong.log.err("typebody==== ",type(body))
     kong.log.err("typeres.body==== ",type(res.body))
-    for key, val in pairs(res.body) do
-        if type(val) == "table" then
-            kong.log.err("table:"..key, ": ", table.concat(val, ", "))
-        else
-            kong.log.err("one:"..key, ": ", val)
-        end
-    end
-
 
   if not res then
      kong.log.err("not res ====== ",err)
