@@ -26,10 +26,10 @@ function ExternalAuthHandler:access(conf)
       local resp = table.concat(response_body)
       kong.log.err("response body1111: ", resp)
 
-    if resp["code"] then
-            kong.log.err("response codecode: ", resp["code"])
-            if resp["error_code"] then
-                kong.log.err("response error_codeerror_code: ", resp["error_code"])
+    if response_body["code"] then
+            kong.log.err("response codecode: ", response_body["code"])
+            if response_body["error_code"] then
+                kong.log.err("response error_codeerror_code: ", response_body["error_code"])
             end
     end
 
@@ -38,10 +38,10 @@ function ExternalAuthHandler:access(conf)
         return nil, resp
     end
 
-    if resp["code"] ~= 20101 then
-        kong.log.err("response code: ", resp)
-        kong.log.err("response error_code1111111111: ", resp["error_code"])
-        kong.log.err("response codecode2222222222222: ", resp["code"])
+    if response_body["code"] ~= 20101 then
+        kong.log.err("response code: ", response_body)
+        kong.log.err("response error_code1111111111: ", response_body["error_code"])
+        kong.log.err("response codecode2222222222222: ", response_body["code"])
         return nil, resp
     end
 
