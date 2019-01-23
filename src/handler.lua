@@ -19,8 +19,8 @@ function ExternalAuthHandler:access(conf)
 
   local res, err = client:request_uri(conf.url, {
     method = "post",
-    path = kong.request.get_path(),
-    query = kong.request.get_raw_query(),
+    path = "",
+    query = "",
     headers = kong.request.get_headers(),
     body = ""
   })
