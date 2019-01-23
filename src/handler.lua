@@ -24,14 +24,30 @@ function ExternalAuthHandler:access(conf)
         return nil, "Unexpected response"
     end
       local resp = table.concat(response_body)
-      kong.log.err("response body: ", resp)
+      kong.log.err("response body1111: ", resp)
+
+    if resp["code"] then
+            kong.log.err("response codecode: ", resp["code"])
+            if resp["error_code"] then
+                kong.log.err("response error_codeerror_code: ", resp["error_code"])
+            end
+    end
 
     if resp["error_code"] then
+        kong.log.err("response error_code: ", resp)
         return nil, resp
     end
 
     if resp["code"] ~= 20101 then
+        kong.log.err("response code: ", resp)
         return nil, resp
+    end
+
+    if resp["code"] then
+        kong.log.err("response codecode: ", resp["code"])
+        if resp["error_code"] then
+            kong.log.err("response error_codeerror_code: ", resp["error_code"])
+        end
     end
 
     if code ~= 200 then
