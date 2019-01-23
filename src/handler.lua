@@ -23,33 +23,15 @@ function ExternalAuthHandler:access(conf)
     if type(response_body) ~= "table" then
         return nil, "Unexpected response"
     end
-      local resp = table.concat(response_body)
-      kong.log.err("response body========: ", resp)
 
-      for k,v in ipairs(response_body) do
-       kong.log.err("response_body=key=value")
-       kong.log.err(k,v)
-      end
 
-    if response_body["code"] then
-            kong.log.err("response codecode: ", response_body["code"])
-            if response_body["error_code"] then
-                kong.log.err("response error_codeerror_code: ", response_body["error_code"])
-            end
-    end
+    local resp = table.concat(response_body)
+    kong.log.err("response body========: ", resp)
 
-    if resp["error_code"] then
-        kong.log.err("response error_code: ", resp)
-        return nil, resp
-    end
+    local data = cjson.decode(resp)
 
-    if response_body["code"] ~= 20101 then
-        kong.log.err("response code: ", response_body)
-        kong.log.err("response error_code1111111111: ", response_body["error_code"])
-        kong.log.err("response codecode2222222222222: ", response_body["code"])
-        return nil, resp
-    end
-
+    kong.log.err("response code=================: ", data["code"])
+    kong.log.err("response error_code=================: ", data["error_code"])
 
     if code ~= 200 then
         return nil, resp
