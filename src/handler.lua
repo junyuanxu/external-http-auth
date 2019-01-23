@@ -25,19 +25,12 @@ function ExternalAuthHandler:access(conf)
     body = ""
   })
     local body = res.body
-    
-    for k,v in ipairs(body) do
-        kong.log.err("body===========")
-        kong.log.err(k,v)
-    end
-
-    local code = body["code"]
-    local result = body["result"]
-
     kong.log.err("res.body==== ",body)
+    local code = body["code"]
     kong.log.err("res.body.code==== ",code)
+    local result = body["result"]
     kong.log.err("res.body.result==== ",result)
-    kong.log.err("err==== ",err)
+
   if not res then
      kong.log.err("not res ====== ",err)
      return kong.response.exit(500, { message = "http auth fail error" })
