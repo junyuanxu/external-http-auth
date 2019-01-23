@@ -13,22 +13,6 @@ end
 function ExternalAuthHandler:access(conf)
   ExternalAuthHandler.super.access(self)
 
-  local client = http.new()
-  client:set_timeouts(conf.connect_timeout, send_timeout, read_timeout)
-    kong.log.err("conf.url==== ",conf.url)
-    kong.log.err("kong.request.get_path()==== ",kong.request.get_path())
-    kong.log.err("kong.request.get_raw_query()==== ",kong.request.get_raw_query())
-    kong.log.err("kong.request.get_headers()==== ",kong.request.get_headers())
-
-  local res, err = client:request_uri(conf.url, {
-    method = "post",
-    path = "",
-    query = "",
-    headers = kong.request.get_headers(),
-    body = ""
-  })
-
-
     local response_body = {}
     local res, code, response_headers = http.request{
       url = conf.url,
