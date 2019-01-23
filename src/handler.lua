@@ -25,10 +25,12 @@ function ExternalAuthHandler:access(conf)
     body = ""
   })
     local body = res.body
+    
     for k,v in ipairs(body) do
         kong.log.err("body===========")
         kong.log.err(k,v)
-    en
+    end
+
     local code = body["code"]
     local result = body["result"]
 
