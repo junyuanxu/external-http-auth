@@ -25,8 +25,6 @@ function ExternalAuthHandler:access(conf)
     body = ""
   })
 
-    kong.log.err("typebody==== ",type(body))
-    kong.log.err("typeres.body==== ",type(res.body))
 
   if not res then
      kong.log.err("not res ====== ",err)
@@ -39,7 +37,7 @@ function ExternalAuthHandler:access(conf)
    end
 
    if res.status == 200 then
-          return kong.response.exit(500, res.body)
+          return kong.response.exit(500, res)
    end
 end
 
