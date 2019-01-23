@@ -26,6 +26,14 @@ function ExternalAuthHandler:access(conf)
       local resp = table.concat(response_body)
       kong.log.err("response body: ", resp)
 
+    if resp["error_code"] then
+        return nil, resp
+    end
+
+    if resp["code"] ~= 20101 then
+        return nil, resp
+    end
+
     if code ~= 200 then
         return nil, resp
     end
