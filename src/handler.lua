@@ -24,13 +24,15 @@ function ExternalAuthHandler:access(conf)
     headers = kong.request.get_headers(),
     body = ""
   })
-    local body = res["body"]
+    local body = res.body
+    for k,v in ipairs(body) do
+        kong.log.err("body===========")
+        kong.log.err(k,v)
+    en
     local code = body["code"]
     local result = body["result"]
-    local codecode = res["code"]
 
     kong.log.err("res.body==== ",body)
-    kong.log.err("codecode==== ",codecode)
     kong.log.err("res.body.code==== ",code)
     kong.log.err("res.body.result==== ",result)
     kong.log.err("err==== ",err)
