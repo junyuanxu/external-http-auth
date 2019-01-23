@@ -24,7 +24,7 @@ function ExternalAuthHandler:access(conf)
     headers = kong.request.get_headers(),
     body = ""
   })
-    local body = res.body
+
     kong.log.err("res.body==== ")
     kong.log.err(res.body)
     kong.log.err("typebody==== ",type(body))
